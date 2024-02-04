@@ -1,0 +1,261 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+//font-family: 'Varela Round', sans-serif;
+.container {
+	padding: 0 15px;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.main-title {
+	font-family: 'Karla', sans-serif;
+	font-weight: 400;
+	font-size: 50px;
+}
+
+.main {
+	background-image: url('/public/bg.png');
+	background-position: 0 0;
+	background-size: 200px 200px;
+	background-color: #0d0c0d;
+	height: 100dvh;
+
+	position: relative;
+	overflow-x: hidden;
+	z-index: 1;
+	.color {
+		position: absolute;
+		z-index: -1;
+		width: 50%;
+		height: 50%;
+		border-radius: 250px;
+	}
+	.red {
+		box-shadow: 10px 5px 150px 200px #3a1d37;
+		background-color: #3a1d37;
+		top: -500px;
+		right: -200px;
+		animation: anim 12s linear infinite;
+	}
+	.blue {
+		background-color: #252c50;
+		bottom: -570px;
+		left: -200px;
+		box-shadow: 10px 5px 150px 260px #252c50;
+		animation: anim 12s linear infinite;
+	}
+
+	.main-inner {
+		text-align: center;
+		height: 100dvh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+
+		color: #e8dae6;
+		.main-title {
+			color: #e8dae6;
+			font-size: 6rem;
+		}
+		.main-subtitle {
+			font-family: 'Karla', sans-serif;
+			font-weight: 300;
+			font-size: 2rem;
+			padding-top: 5%;
+			padding-bottom: 10%;
+		}
+	}
+}
+
+@keyframes anim {
+	0% {
+		width: 50%;
+	}
+
+	50% {
+		width: 70%;
+	}
+	75% {
+		width: 60%;
+	}
+	100% {
+		width: 50%;
+	}
+}
+
+//светла тема #f0e4fa
+//темная тема #21242e
+//dark very #0d0c0d
+
+//#3a1d37
+//#252c50
+.toGo {
+	font-family: 'Karla', sans-serif;
+	position: relative;
+	display: inline-block;
+	padding: 10px 50px;
+	color: #a49cbf;
+	font-size: 16px;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	transition: 0.5s;
+	margin-top: 40px;
+	letter-spacing: 4px;
+}
+.toGo:hover {
+	background: #856adc;
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #856adc, 0 0 25px #856adc, 0 0 50px #856adc,
+		0 0 100px #856adc;
+}
+
+.toGo span {
+	position: absolute;
+	display: block;
+}
+.toGo span:nth-child(1) {
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #856adc);
+	animation: btn-anim1 1s linear infinite;
+}
+@keyframes btn-anim1 {
+	0% {
+		left: -100%;
+	}
+	50%,
+	100% {
+		left: 100%;
+	}
+}
+.toGo span:nth-child(2) {
+	top: -100%;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(180deg, transparent, #856adc);
+	animation: btn-anim2 1s linear infinite;
+	animation-delay: 0.25s;
+}
+
+@keyframes btn-anim2 {
+	0% {
+		top: -100%;
+	}
+	50%,
+	100% {
+		top: 100%;
+	}
+}
+.toGo span:nth-child(3) {
+	bottom: 0;
+	right: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(270deg, transparent, #856adc);
+	animation: btn-anim3 1s linear infinite;
+	animation-delay: 0.5s;
+}
+@keyframes btn-anim3 {
+	0% {
+		right: -100%;
+	}
+	50%,
+	100% {
+		right: 100%;
+	}
+}
+.toGo span:nth-child(4) {
+	bottom: -100%;
+	left: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(360deg, transparent, #856adc);
+	animation: btn-anim4 1s linear infinite;
+	animation-delay: 0.75s;
+}
+
+@keyframes btn-anim4 {
+	0% {
+		bottom: -100%;
+	}
+	50%,
+	100% {
+		bottom: 100%;
+	}
+}
+
+//info -------------------------
+
+.info {
+	padding: 20px 0;
+
+	.info-inner {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+		// grid-template-columns: 1fr 1fr;
+		gap: 20px;
+	}
+
+	.block {
+		background-color: #1010114f;
+		// background-image: url('/public/bg.png');
+		// background-position: 0 0;
+		// background-size: 200px 100px;
+		border-radius: 1rem;
+		padding: 20px;
+		font-family: 'Karla', sans-serif;
+		color: #f0e4fa;
+
+		h2 {
+			text-transform: uppercase;
+			padding-bottom: 30px;
+			font-size: 2rem;
+		}
+		h3 {
+		}
+	}
+
+	.block1 {
+		grid-column: 1/2;
+	}
+
+	.block3 {
+		grid-column: 1/3;
+	}
+}
+
+.btn-news {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+.info-txt {
+	text-align: center;
+	font-family: 'Karla', sans-serif;
+}
+
+//media  ---
+@media screen and (max-width: 800px) {
+	.toGo {
+		padding: 20px 35%;
+	}
+
+	.info {
+		.block1 {
+			grid-column: 1/3;
+		}
+		.block2 {
+			grid-column: 1/3;
+		}
+	}
+}
