@@ -1,17 +1,13 @@
-import './layout.scss'
-function Layout() {
+import './Layout.scss'
+function Layout({ children }) {
 	return (
 		<>
-			{/* <header>
-				<Link to='/'>Home</Link>
-				<Link to='/test-typing'>test-typing</Link>
-			</header>
-			<Outlet></Outlet> */}
-			{/* 
-			<Routes>
-				<Route path='/' element={<MainScreen />} />
-				<Route path='/test-typing' element={<TestTyping />} />
-			</Routes> */}
+			<main className='main'>
+				<div className='color red'></div>
+				<div className='color blue'></div>
+
+				{children}
+			</main>
 		</>
 	)
 }

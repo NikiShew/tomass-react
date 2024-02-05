@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+.start-page {
+	padding-top: 5%;
+	.start-page-inner {
+		.start-page__block1 {
+			display: flex;
+			font-family: 'Montserrat', sans-serif;
+			width: 100%;
+			background-color: #21242e;
+			border-radius: 20px;
+			img {
+				max-width: 260px;
+			}
+			.start-page_bl1-info {
+				display: flex;
+				flex-direction: column;
+				padding: 20px;
+				border-left: 2px solid rgba(128, 128, 128, 0.173);
+				h2 {
+					padding-top: 20px;
+					color: #e4ecfa;
+					padding-bottom: 30px;
+					font-size: 20px;
+				}
+				h4 {
+					font-size: 17px;
+					padding-bottom: 30px;
+					color: #a5a1a1;
+				}
+
+				a {
+					background-color: #444a69;
+					color: #e4ecfa;
+					border-radius: 5px;
+					opacity: 70%;
+					align-self: self-end;
+					transition: all 0.3s;
+					width: 130px;
+					padding: 3px 0;
+					text-align: center;
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}
+.start-page__block2 {
+	max-width: 48%;
+	padding: 20px;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #21242e;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+
+	h3 {
+		padding-bottom: 15px;
+		color: #e4ecfa;
+		font-size: 15px;
+	}
+	h4 {
+		background-color: rgb(241, 40, 40);
+		padding: 2px 0px 4px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 70%;
+		border-radius: 15px;
+		color: white;
+		width: 60px;
+		font-size: 12px;
+		margin-bottom: 20px;
+		transition: 0.3s all;
+	}
+	a {
+		border-radius: 5px;
+		opacity: 80%;
+		background-color: #da4617;
+		color: white;
+		align-self: self-end;
+		transition: all 0.3s;
+		width: 130px;
+		padding: 3px 0;
+		text-align: center;
+		&:hover {
+			opacity: 1;
+		}
+	}
+	&:hover {
+		h4 {
+			opacity: 100%;
+		}
+	}
+}
+.start-page__block3 {
+	font-family: 'Montserrat', sans-serif;
+	gap: 15px;
+	display: flex;
+	flex-direction: column;
+	.telegram-info {
+		border-radius: 20px;
+		padding: 10px 20px;
+		display: flex;
+		background-color: #21242e;
+		align-items: center;
+		gap: 20px;
+		align-self: flex-start;
+		height: auto;
+		img {
+			max-width: 80px;
+			max-height: 70px;
+		}
+		h3 {
+			font-size: 13px;
+			color: #e4ecfa;
+		}
+	}
+}
+.start-page-packet {
+	display: flex;
+	padding-top: 15px;
+	gap: 15px;
+}

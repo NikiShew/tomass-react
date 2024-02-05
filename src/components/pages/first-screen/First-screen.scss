@@ -7,6 +7,7 @@
 //font-family: 'Varela Round', sans-serif;
 .container {
 	padding: 0 15px;
+	padding-left: 65px;
 	max-width: 1000px;
 	margin: 0 auto;
 }
@@ -18,14 +19,13 @@
 }
 
 .main {
-	background-image: url('/public/bg.png');
+	background-image: url('../../../../public/bg.png');
 	background-position: 0 0;
 	background-size: 200px 200px;
-	background-color: #0d0c0d;
-	height: 100dvh;
-
+	background-color: #16171b;
+	min-height: 100dvh;
 	position: relative;
-	overflow-x: hidden;
+	overflow: hidden;
 	z-index: 1;
 	.color {
 		position: absolute;
@@ -35,16 +35,17 @@
 		border-radius: 250px;
 	}
 	.red {
-		box-shadow: 10px 5px 150px 200px #3a1d37;
-		background-color: #3a1d37;
-		top: -500px;
-		right: -200px;
+		box-shadow: 10px 5px 150px 200px #f13c06;
+		background-color: #f13c06;
+		opacity: 60%;
+		top: -40%;
+		right: -40%;
 		animation: anim 12s linear infinite;
 	}
 	.blue {
 		background-color: #252c50;
-		bottom: -570px;
-		left: -200px;
+		bottom: -40%;
+		left: -40%;
 		box-shadow: 10px 5px 150px 260px #252c50;
 		animation: anim 12s linear infinite;
 	}
