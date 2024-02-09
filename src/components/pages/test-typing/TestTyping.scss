@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+.test-typing {
+	padding-top: 5%;
+
+	.test-typing-inner {
+		font-family: 'Montserrat', sans-serif;
+		h2 {
+			color: #e4ecfa;
+			padding-bottom: 20px;
+		}
+
+		.subtitle-typing {
+			font-size: 18px;
+			color: #e4ecfa;
+			opacity: 70%;
+			padding-bottom: 20px;
+		}
+	}
+	.test-typing-work {
+		padding-top: 30%;
+		.work-settings {
+			display: flex;
+			gap: 20px;
+			align-items: center;
+
+			.change-typing {
+				background: none;
+				border: none;
+				opacity: 70%;
+				display: flex;
+				gap: 7px;
+				cursor: pointer;
+				align-items: center;
+				transition: 0.3s all;
+				img {
+					width: 18px;
+				}
+				span {
+					color: #e4ecfa;
+					font-size: 15px;
+				}
+
+				&:hover {
+					opacity: 100%;
+				}
+			}
+		}
+	}
+	.typing-work {
+		.txts {
+			color: grey;
+
+			border-bottom: 0.05em solid transparent;
+			padding: 20px;
+			font-variant: no-common-ligatures;
+			line-height: 1em;
+			font-size: 1.4em;
+		}
+	}
+}
+
+.colorR {
+	color: red;
+}
+.colorW {
+	color: #e4ecfa;
+}
+.cursor {
+	border-left: 2px solid white;
+	transition: 0.2s all;
+	animation: flash 1s infinite;
+}
+@keyframes flash {
+	0% {
+		border-left: 1px solid transparent;
+	}
+	50% {
+		border-left: 1px solid white;
+	}
+	100% {
+		border-left: 1px solid transparent;
+	}
+}
