@@ -100,10 +100,11 @@
 	position: relative;
 	display: inline-block;
 	padding: 10px 50px;
-	color: #a49cbf;
+	color: #a49cbf !important;
 	font-size: 16px;
 	text-decoration: none;
 	text-transform: uppercase;
+	cursor: pointer;
 	overflow: hidden;
 	transition: 0.5s;
 	margin-top: 40px;

@@ -1,64 +1,120 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useRef, useState } from 'react'
 import langIcon from '../../../../public/planet.png'
+import repeatIcon from '../../../../public/repeat-sign.png'
 import timeIcon from '../../../../public/time.png'
 import './TestTyping.scss'
 function TestTyping() {
 	let [key, setKey] = useState('press key')
-	let [time, setTime] = useState(localStorage.getItem('second'))
+	let [time, setTime] = useState(
+		localStorage.getItem('second') === null
+			? 30
+			: localStorage.getItem('second')
+	)
+
+	let [error, setError] = useState(0)
+
+	let [timerSec, setTimerSec] = useState(time)
 	let [timeI, setTimeI] = useState(0)
-	let [lang, setLang] = useState(localStorage.getItem('lang'))
+	let [lang, setLang] = useState(
+		localStorage.getItem('lang') === null
+			? 'english'
+			: localStorage.getItem('lang')
+	)
 	let [iterator, setIterator] = useState(0)
 	let [isTimeOver, setTimeOver] = useState(false)
-	let txtEnglish = 'Nikita lolllfl'
+	let txtEnglish =
+		'Among its newest features is Newsline, an interactive news ticker that includes local news headlines, weather conditions, forecasts and alerts, stock market data, and top stories across business, entertainment, science, and technology categories.'
 	let txtRu = 'Никита лоллллооооо лло'
 	let txt = lang === 'russian' ? txtRu : txtEnglish
-	let error
 	let times = [30, 60, 90]
-
-	let textBlock
-
-	// useEffect(() => {
-	// 	// textBlock = document.querySelector('.txts')
-	// 	if (textBlock) {
-	// 		let splited = txt.split('').map(elem => {
-	// 			return `<span>${elem}</span>`
-	// 		})
-	// 		textBlock.innerHTML = splited.join('')
-	// 	}
-	// }, [])
-
+	let textBlock = useRef(null)
+	let [intervalTime, setIntervalTime] = useState(true)
 	useEffect(() => {
-		textBlock = document.querySelector('.txts')
 		let splited = txt.split('').map(elem => {
 			return `<span>${elem}</span>`
 		})
-		textBlock.innerHTML = splited.join('')
-	})
+		textBlock.current.innerHTML = splited.join('')
+		document.addEventListener('keydown', keyPressHandler)
+		return () => {
+			document.removeEventListener('keydown', keyPressHandler)
+		}
+	}, [isTimeOver])
 
-	document.addEventListener('keydown', function keyPressHandler(e) {
-		textBlock = document.querySelector('.txts')
-		if (isTimeOver) {
-			let expectedSyvbol = txt[iterator]
-			let currentSpan = textBlock && textBlock.children[iterator + 1]
-			if (e.key === expectedSyvbol) {
+	function keyPressHandler(e) {
+		let expectedSyvbol = txt[iterator]
+		let currentSpan =
+			textBlock.current && textBlock.current.children[iterator + 1]
+		if (
+			isTimeOver &&
+			iterator < txt.length &&
+			textBlock.current &&
+			isTimeOver
+		) {
+			if (e && e.key === expectedSyvbol) {
 				if (currentSpan && currentSpan.style) {
 					currentSpan.classList.add('cursor')
 				}
 				iterator++
 				rerender()
-			} else if (e.key !== txt[iterator - 1] && e.key !== 'Shift') {
-				textBlock.children[iterator]?.classList.add('colorR')
+			} else if (e && e.key !== txt[iterator - 1] && e.key !== 'Shift') {
+				textBlock.current.children[iterator]?.classList.add('colorR')
+				setError(error++)
+				console.log(error)
+			}
+			if (iterator === textBlock.current.children.length || !isTimeOver) {
+				finishTest()
 			}
 		}
-	})
-	function finishTest() {
-		for (let i = 0; i < textBlock.children.length; i++) {
-			textBlock.children[i].classList.remove('colorW')
-		}
-		setIterator(0)
 	}
+	let interval
+	function timer() {
+		let sec = time
+		if (!isTimeOver) {
+			interval = setInterval(() => {
+				if (sec === 0) {
+					clearInterval(interval)
+					finishTest()
+					document.removeEventListener('keydown', keyPressHandler)
+					setTimerSec(time)
+				} else {
+					sec -= 1
+					setTimerSec(sec)
+				}
+			}, 1000)
+		}
+	}
+
+	//как сделать так чтобы я смог ее использовать везде и изменять
+	//что то с первых входом
+	function start() {
+		setError(0)
+		setTimeOver(true)
+		setIntervalTime(true)
+		timer()
+		keyPressHandler()
+		textBlock.current.style.color = 'rgb(206, 198, 198)'
+	}
+
+	function repeat() {
+		setError(0)
+		setIntervalTime(false)
+		finishTest()
+		document.removeEventListener('keydown', keyPressHandler)
+		setTimerSec(time)
+	}
+
+	function finishTest() {
+		setIterator(0)
+		setTimeOver(false)
+		for (let i = 0; i < textBlock.current.children.length; i++) {
+			textBlock.current.children[i].classList.remove('colorW')
+		}
+		textBlock.current.style.color = 'grey'
+		document.removeEventListener('keydown', keyPressHandler)
+	}
+
 	function rerender() {
-		let textChildMinOne = textBlock.children[iterator - 1]
+		let textChildMinOne = textBlock.current.children[iterator - 1]
 		for (let i = 0; i <= txt.length; i++) {
 			textChildMinOne?.classList.remove('colorR')
 			textChildMinOne?.classList.add('colorW')
@@ -66,25 +122,19 @@ function TestTyping() {
 				textChildMinOne.classList.remove('cursor')
 			}
 		}
-		if (iterator === textBlock.children.length) {
-			setTimeOver(false)
-			finishTest()
-		}
 	}
 
-	//даем нынешнему спану класс потом по классу ищем и послего него даем спан курсор
-	function start() {
-		setTimeOver(true)
-		textBlock.style.color = 'rgb(206, 198, 198)'
-	}
+	function info() {}
 
 	//--------------------------------------------------------------
+
 	localStorage.setItem('second', time)
 	localStorage.setItem('lang', lang)
 	function changeTime() {
 		const nextTimeI = (timeI + 1) % times.length
 		setTimeI(nextTimeI)
 		setTime(times[nextTimeI])
+		setTimerSec(times[nextTimeI])
 	}
 
 	//-----------------------------------------------------------
@@ -111,21 +161,33 @@ function TestTyping() {
 
 				<div className='test-typing-work'>
 					<div className='work-settings'>
-						<button
-							className='change-time-typing change-typing'
-							onClick={changeTime}
-						>
-							<img src={timeIcon} alt='' />
-							<span className='typing-time'>{time}s</span>
-						</button>
-						<button className='change-typing' onClick={changeLang}>
-							<img src={langIcon} alt='' />
-							<span>{lang}</span>
-						</button>
+						<div className='settings-btns'>
+							<button
+								className='change-time-typing change-typing'
+								onClick={changeTime}
+							>
+								<img src={timeIcon} alt='' />
+								<span className='typing-time'>{time}s</span>
+							</button>
+							<button className='change-typing' onClick={changeLang}>
+								<img src={langIcon} alt='' />
+								<span>{lang}</span>
+							</button>
+						</div>
+						<h3 className='timerSec'>{timerSec}</h3>
 					</div>
 					<div className='typing-work'>
-						<div className='txts'>{txt}</div>
-						<button onClick={start}>start</button>
+						<div className='txts' ref={textBlock}>
+							{txt}
+						</div>
+						<div className='btns-command'>
+							<button onClick={start} className='btn-command start-btn'>
+								start
+							</button>
+							<button onClick={repeat} className='btn-command repeat-btn'>
+								<img src={repeatIcon} alt='' /> repeat
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>

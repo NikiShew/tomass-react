@@ -1,11 +1,8 @@
-import App from '../../../App'
-import MainScreen from '../main-Screen/main-screen'
-
+import StartPage from '../start/Start-page'
 import './first-screen.scss'
 function FirstScreen() {
 	function exit() {
 		localStorage.setItem('exit', true)
-		return <MainScreen></MainScreen>
 	}
 
 	return (
@@ -26,7 +23,7 @@ function FirstScreen() {
 							Give free rein to your typing <br />
 							and amaze the world with your mastery!
 						</h2>
-						<a className='toGo' href={<App></App>} onClick={exit}>
+						<a className='toGo' onClick={exit} href={<StartPage />}>
 							<span></span>
 							<span></span>
 							<span></span>
@@ -62,7 +59,7 @@ function FirstScreen() {
 								</div>
 							</div>
 							<div className='btn-news'>
-								<a className='toGo' href='#'>
+								<a className='toGo'>
 									<span></span>
 									<span></span>
 									<span></span>
