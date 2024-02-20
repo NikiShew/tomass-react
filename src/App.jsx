@@ -12,6 +12,7 @@ import './App.css'
 import MainScreen from './components/pages/main-Screen/main-screen'
 import SmallScreen from './components/pages/small-screen/small-screen'
 import StartPage from './components/pages/start/Start-page'
+import Statistic from './components/pages/test-typing/Statistic'
 import TestTyping from './components/pages/test-typing/testTyping'
 import Layout from './components/sections/Layout/Layout'
 function App() {
@@ -76,7 +77,7 @@ function App() {
 								</Link>
 							</li>
 							<li>
-								<Link>
+								<Link to='/statistics'>
 									<img src={award} alt='' />
 									Achievements
 								</Link>
@@ -102,6 +103,7 @@ function App() {
 									<Route path='/' element={<StartPage />} />
 									<Route path='/test-typing' element={<TestTyping />} />
 									<Route path='/main' element={<MainScreen />} />
+									<Route path='/statistics' element={<Statistic />} />
 								</Routes>
 							</div>
 						</div>
