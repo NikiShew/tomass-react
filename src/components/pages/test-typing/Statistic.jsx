@@ -1,9 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import filterIcon from '../../../../public/filter.png'
+import removeIcon from '../../../../public/remove.png'
+import Pagination from './Pagination'
 import { useResult } from './ResultContext'
-
+import './Statistic.scss'
 const Statistic = () => {
 	const { testResults, setTestResults } = useResult()
+	const [currentPage, setCurrentPage] = useState(1)
+	const [statisticPerPage] = useState(10)
 
+	const lastCurrentIndex = currentPage * statisticPerPage
+	const firstCurrentIndex = lastCurrentIndex - statisticPerPage
+	const currentStatistics = testResults.slice(
+		firstCurrentIndex,
+		lastCurrentIndex
+	)
+	console.log(testResults)
+
+	let paginate = pageNumber => setCurrentPage(pageNumber)
 	useEffect(() => {
 		const storedResults = JSON.parse(localStorage.getItem('testResults')) || []
 		setTestResults(storedResults)
@@ -11,9 +25,66 @@ const Statistic = () => {
 
 	return (
 		<div>
-			<h2>Результаты тестов скорости печати:</h2>
-			<ul>
-				{testResults.map((result, index) => (
+			<h2 className='statistic-title'>Результаты тестов скорости печати:</h2>
+
+			<div className='result_Block'>
+				<div className='result_Block__inner'>
+					<div className='result_Block-left result_Block-component'>
+						<div className='header-result'>
+							<h3 className='Block-component_title'>Modes</h3>
+						</div>
+						<ul className='modes-ul'>
+							<li className='active'>Classic</li>
+						</ul>
+						<ul className='modes-ul'>
+							<li>more...</li>
+						</ul>
+					</div>
+					<div className='result_Block-right result_Block-component'>
+						<table>
+							<thead>
+								<tr>
+									<th>№</th>
+									<th>Date</th>
+									<th>Speed</th>
+									<th>Accuracy</th>
+									<th>
+										<button>
+											<img src={filterIcon} alt='' /> filter
+										</button>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								{currentStatistics.map((result, index) => (
+									<tr key={index}>
+										<td>{index + 1}</td>
+										<td>{result.time}</td>
+										<td>{result.speed}sv/m</td>
+										<td>{result.accuracy}%</td>
+										<td>
+											{' '}
+											<button>
+												<img src={removeIcon} alt='' />
+											</button>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+						<div className='page-num'>
+							<Pagination
+								statisticPerPage={statisticPerPage}
+								totalStatistics={testResults.length}
+								paginate={paginate}
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* <ul>
+				{currentStatistics.map((result, index) => (
 					<li key={index}>
 						<p>{index + 1}</p>
 						<p>Скорость печати: {result.speed} слов в минуту</p>
@@ -21,7 +92,12 @@ const Statistic = () => {
 						<p>Время: {result.time}</p>
 					</li>
 				))}
-			</ul>
+				<Pagination
+					statisticPerPage={statisticPerPage}
+					totalStatistics={testResults.length}
+					paginate={paginate}
+				/>
+			</ul> */}
 		</div>
 	)
 }

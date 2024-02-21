@@ -1,0 +1,132 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	color: white;
+}
+
+.statistic-title {
+	padding-bottom: 30px;
+}
+
+.result_Block {
+	// height: 90dvh;
+	font-family: 'Montserrat', sans-serif;
+	.result_Block__inner {
+		display: flex;
+		gap: 20px;
+		align-items: flex-start;
+		.result_Block-left {
+			width: 20%;
+
+			border-radius: 10px;
+			backdrop-filter: blur(7px);
+			background-color: #21242e68;
+			height: 300px;
+			.header-result {
+				background: #1d1e22;
+				text-align: center;
+				font-size: 16px;
+			}
+
+			.modes-ul {
+				list-style: none;
+				li {
+					transition: 0.3s all ease-in;
+					cursor: pointer;
+					opacity: 80%;
+					background-color: #262b3c;
+					font-size: 16px;
+					text-align: center;
+					padding: 6px 0;
+					&:hover {
+						opacity: 1;
+					}
+					&.active {
+						background-color: #33394f;
+					}
+				}
+			}
+		}
+		.result_Block-component {
+			.Block-component_title {
+				color: aliceblue;
+				padding: 10px;
+			}
+		}
+		.result_Block-right {
+			position: relative;
+			width: 80%;
+			backdrop-filter: blur(7px);
+			height: 700px;
+			background-color: #21242e68;
+			border-radius: 10px;
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				border-radius: 50px 50px 0 0;
+				thead {
+					height: 40px;
+					padding: 10px;
+					th {
+						text-align: center;
+						background-color: #1d1e22;
+						&:first-child {
+							border-radius: 10px 0 0 0;
+						}
+						&:last-child {
+							border-radius: 0 10px 0 0;
+						}
+						button {
+							background-color: white;
+							font-family: 'Montserrat', sans-serif;
+							width: 100%;
+							cursor: pointer;
+							font-size: 15px;
+							display: flex;
+							gap: 10px;
+							justify-content: center;
+							align-items: center;
+							background: inherit;
+							border: none;
+							img {
+								width: 16px;
+							}
+						}
+					}
+				}
+				tbody {
+					tr {
+						transition: 0.3s all ease-in;
+						opacity: 70%;
+						border-bottom: 2px solid #1d1e228e;
+						td {
+							padding: 10px;
+							background-color: #262b3c;
+							vertical-align: middle;
+							text-align: center;
+
+							&:hover {
+								opacity: 1;
+							}
+						}
+						button {
+							width: 100%;
+
+							cursor: pointer;
+							background-color: inherit;
+							border: none;
+							img {
+								width: 20px;
+							}
+						}
+
+						&:hover {
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+	}
+}

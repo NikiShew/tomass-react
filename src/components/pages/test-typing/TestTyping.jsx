@@ -46,7 +46,7 @@ function TestTyping() {
 	// useEffect(() => {
 	// 	setResultList({ nikita: ' parvov', oleg: 'vinnik' })
 	// }, [])
-	const { addTestResult } = useResult()
+	const { addTestResult, testResults } = useResult()
 	const [seconds, setSeconds] = useState(timerSec)
 	const [isActive, setIsActive] = useState(false)
 	let iteratorRef = useRef(iterator)
@@ -104,7 +104,6 @@ function TestTyping() {
 		setError(0)
 		buttonRef.current.blur()
 	}
-
 	const resetTimer = () => {
 		setSeconds(timerSec)
 		setIsActive(false)

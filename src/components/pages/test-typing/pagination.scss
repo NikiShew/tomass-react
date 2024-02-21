@@ -1,0 +1,25 @@
+.pagination {
+	display: flex;
+	gap: 3px;
+	list-style: none;
+	position: absolute;
+	bottom: -30px;
+	left: 45%;
+	.page-item {
+		cursor: pointer;
+		opacity: 70%;
+		padding: 3px 7px;
+		background-color: #3b4a7a68;
+		border-radius: 5px;
+		transition: 0.2s all ease-in;
+		&:hover {
+			opacity: 1;
+		}
+
+		// color: aliceblue;
+		a {
+			color: aliceblue;
+			background-color: #21242e68;
+		}
+	}
+}
