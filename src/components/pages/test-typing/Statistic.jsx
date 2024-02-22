@@ -8,20 +8,47 @@ const Statistic = () => {
 	const { testResults, setTestResults } = useResult()
 	const [currentPage, setCurrentPage] = useState(1)
 	const [statisticPerPage] = useState(10)
-
 	const lastCurrentIndex = currentPage * statisticPerPage
 	const firstCurrentIndex = lastCurrentIndex - statisticPerPage
-	const currentStatistics = testResults.slice(
-		firstCurrentIndex,
-		lastCurrentIndex
-	)
-	console.log(testResults)
+	const [filterBull, setFilterBull] = useState(true)
+	const [filtered, setFiltered] = useState(testResults)
+
+	const updateTestResults = newResults => {
+		localStorage.setItem('testResults', JSON.stringify(newResults))
+		setTestResults(newResults)
+	}
 
 	let paginate = pageNumber => setCurrentPage(pageNumber)
 	useEffect(() => {
 		const storedResults = JSON.parse(localStorage.getItem('testResults')) || []
+		setFiltered(storedResults)
 		setTestResults(storedResults)
-	}, [setTestResults])
+	}, [setTestResults, setFiltered])
+
+	// useEffect(() => {
+	// 	setFiltered(testResults)
+	// }, [testResults])
+
+	const currentStatistics = filtered.slice(firstCurrentIndex, lastCurrentIndex)
+
+	function deleteStatistic(index) {
+		let newStatistic = [...testResults].filter((item, i) => i !== index)
+		setTestResults(newStatistic)
+		setFiltered(newStatistic)
+		updateTestResults(newStatistic)
+	}
+
+	useEffect(() => {
+		if (filterBull) {
+			setFiltered(prevFiltered =>
+				[...prevFiltered].sort((a, b) => b.speed - a.speed)
+			)
+		} else {
+			setFiltered(prevFiltered =>
+				[...prevFiltered].sort((a, b) => a.speed - b.speed)
+			)
+		}
+	}, [filterBull])
 
 	return (
 		<div>
@@ -49,7 +76,7 @@ const Statistic = () => {
 									<th>Speed</th>
 									<th>Accuracy</th>
 									<th>
-										<button>
+										<button onClick={() => setFilterBull(!filterBull)}>
 											<img src={filterIcon} alt='' /> filter
 										</button>
 									</th>
@@ -64,7 +91,7 @@ const Statistic = () => {
 										<td>{result.accuracy}%</td>
 										<td>
 											{' '}
-											<button>
+											<button onClick={() => deleteStatistic(index)}>
 												<img src={removeIcon} alt='' />
 											</button>
 										</td>
