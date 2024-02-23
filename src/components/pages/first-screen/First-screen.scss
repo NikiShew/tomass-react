@@ -28,7 +28,7 @@
 	overflow: hidden;
 	z-index: 1;
 	.color {
-		position: absolute;
+		position: fixed;
 		z-index: -1;
 		width: 50%;
 		height: 50%;

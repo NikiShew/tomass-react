@@ -7,10 +7,25 @@
 
 .statistic-title {
 	padding-bottom: 30px;
+	display: flex;
+	gap: 15px;
+	align-items: center;
+	font-family: 'Montserrat', sans-serif;
+	img {
+		width: 40px;
+	}
+}
+
+.statistic-subtitle {
+	font-family: 'Montserrat', sans-serif;
+	padding-bottom: 30px;
+	color: rgba(240, 248, 255, 0.482);
+	font-size: 16px;
 }
 
 .result_Block {
 	// height: 90dvh;
+	padding-bottom: 10em;
 	font-family: 'Montserrat', sans-serif;
 	.result_Block__inner {
 		display: flex;

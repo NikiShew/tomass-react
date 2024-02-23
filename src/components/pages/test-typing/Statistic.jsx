@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import awardIcon from '../../../../public/award.png'
 import filterIcon from '../../../../public/filter.png'
 import removeIcon from '../../../../public/remove.png'
 import Pagination from './Pagination'
@@ -52,7 +53,15 @@ const Statistic = () => {
 
 	return (
 		<div>
-			<h2 className='statistic-title'>Результаты тестов скорости печати:</h2>
+			<h2 className='statistic-title'>
+				<img src={awardIcon} alt='' />
+				Результаты тестов скорости печати:
+			</h2>
+			<h3 className='statistic-subtitle'>
+				Здесь вы можете просматривать результаты своих тестов, отсортированные
+				от лучших к худшим, чтобы всегда имели цель для улучшения. Превзойдите
+				свои собственные достижения!
+			</h3>
 
 			<div className='result_Block'>
 				<div className='result_Block__inner'>

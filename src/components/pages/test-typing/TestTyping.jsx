@@ -40,7 +40,7 @@ function TestTyping() {
 	let times = [30, 60, 90]
 	let textBlock = useRef(null)
 	let [text, setText] = useState(txt.split(''))
-
+	let tomsValue = useResult()
 	// let [resultList, setResultList] = useState([])
 
 	// useEffect(() => {
@@ -84,16 +84,29 @@ function TestTyping() {
 				setSeconds(seconds => seconds - 1)
 			} else if (seconds == 0 || !isActive) {
 				clearInterval(interval)
-				setSeconds(timerSec)
-				result()
-				setResultBlock(true)
-				setIsActive(false)
-				setIterator(0)
+				// setSeconds(timerSec)
+				// result()
+				// setResultBlock(true)
+				// setIsActive(false)
+				// setIterator(0)
+				// tomsValue.addtoms(3)
+				finish()
 			}
 		}, 1000)
 
 		return () => clearInterval(interval)
 	}, [isActive, seconds])
+
+	function finish() {
+		if (isActive) {
+			setSeconds(timerSec)
+			result()
+			setResultBlock(true)
+			setIsActive(false)
+			setIterator(0)
+			tomsValue.addtoms(3)
+		}
+	}
 
 	//как сделать чтобы не правильно введенные буквы подсвечивались красным
 	//чтобы оно передавала информацию на другую страницу

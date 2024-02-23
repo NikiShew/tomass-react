@@ -12,12 +12,14 @@ import './App.css'
 import MainScreen from './components/pages/main-Screen/main-screen'
 import SmallScreen from './components/pages/small-screen/small-screen'
 import StartPage from './components/pages/start/Start-page'
+import { useResult } from './components/pages/test-typing/ResultContext'
 import Statistic from './components/pages/test-typing/Statistic'
 import TestTyping from './components/pages/test-typing/testTyping'
 import Layout from './components/sections/Layout/Layout'
+
 function App() {
 	const [width, setWidth] = React.useState(window.innerWidth)
-
+	let tomsValue = useResult()
 	React.useEffect(() => {
 		const handleResize = event => {
 			setWidth(event.target.innerWidth)
@@ -27,7 +29,6 @@ function App() {
 			window.removeEventListener('resize', handleResize)
 		}
 	}, [])
-
 	if (width < 950) {
 		return <SmallScreen />
 	}
@@ -49,7 +50,7 @@ function App() {
 							</li>
 							<li>
 								<Link>
-									<span class='toms'>100</span>
+									<span class='toms'>{tomsValue.toms}</span>
 								</Link>
 							</li>
 						</ul>
